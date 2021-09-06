@@ -1,0 +1,18 @@
+.center{margin: 0;
+    background: linear-gradient(to right, rgb(196, 221, 105), rgb(230, 107, 189));
+  
+    position: absolute;
+    width: auto;
+    top: 40%;
+    left: 45%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+ p span {
+    color: yellow;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: all 400ms ease-in-out;
+  }
