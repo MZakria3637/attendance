@@ -77,17 +77,7 @@ function SignIn(props) {
             />
             <Link className="btn btn-secondary mx-2" to="/signup">SignUp</Link>
             <Link className="btn btn-secondary mx-2" to="/attendance">Admin</Link>
-            {/* {data && (
-        <Router>
-          <Route
-            exact
-            path="/checkIn-checkOut"
-            component={(data) => {
-              <Check data={data} />;
-            }}
-          />
-        </Router>
-      )} */}
+            
 
         </div>
     );
