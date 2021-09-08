@@ -32,16 +32,16 @@ function SignIn(props) {
     return (
         <div className="center p-5 m-5  border">
             <h3 className="App">Sign In</h3>
-            <div class="mb-3 row">
-                <label for="staticEmail" class="form-label">
+            <div className="mb-3 row">
+                <label for="staticEmail" className="form-label">
                     Email
                 </label>
-                <div class="col-sm-10">
+                <div className="col-sm-10">
                     <input
                         type="text"
                         autoFocus
                         required
-                        class="form-control
+                        className="form-control
                       "
                         id="staticEmail"
                         value={email}
@@ -49,14 +49,14 @@ function SignIn(props) {
                     />
                 </div>
             </div>
-            <div class="mb-3 row">
-                <label for="inputPassword" class="form-label">
+            <div className="mb-3 row">
+                <label for="inputPassword" className="form-label">
                     Password
                 </label>
-                <div class="col-sm-10">
+                <div className="col-sm-10">
                     <input
                         type="password"
-                        class="form-control "
+                        className="form-control "
                         id="inputPassword"
                         autoFocus
                         required
