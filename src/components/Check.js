@@ -67,15 +67,26 @@ function Check() {
                 <div className="col1">
                     <p>{chkIn.time ? chkIn.time : chkIn.err}</p>
                     <button type="button" className={`btn btn-success btn-lg ${chkIn}`} onClick={CheckIn}>CHECK IN</button>
+
                 </div>
                 <div className="col2">
                     <p>{chkOut.time ? chkOut.time : chkOut.err}</p>
-                    <button type="button" className="btn btn-danger btn-lg" onClick={CheckOut}>CHECK OUT</button>
+                    <button type="button" className="btn btn-danger btn-lg" onClick={CheckOut}>CHECK OUT</button><br/>
+                    {IsCheckOut && <form className=" p-5 " style={{ display: 'inline-block' }}>
+                        <div class="form-group ">
+                            <label for="exampleFormControlTextarea1">Today's Work </label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="50" onChange={(e) => {
+                                setDescription(e.target.value);
+                            }}></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2" onSubmit={(e) => { handleSubmit(e); }}>Submit</button>
+                    </form>
+                    }
                 </div>
 
             </div>
             {/* <InternTAsks /> */}
-            {IsCheckOut && <form className=" p-5 " style={{display:'inline-block'}}>
+            {/* {IsCheckOut && <form className=" p-5 " style={{display:'inline-block'}}>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Today's Work </label>
                     <textarea class="form-control"  id="exampleFormControlTextarea1" rows="3"  onChange={(e) => {
@@ -84,7 +95,7 @@ function Check() {
                 </div>
                 <button type="submit" class="btn btn-primary mt-2" onSubmit={(e)=>{handleSubmit(e);}}>Submit</button>
             </form>
-            }
+            } */}
         </>
     )
 }

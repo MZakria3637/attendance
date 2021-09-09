@@ -41,8 +41,8 @@ function SignIn(props) {
                         type="text"
                         autoFocus
                         required
-                        className="form-control
-                      "
+                        className="form-control"
+                      
                         id="staticEmail"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
