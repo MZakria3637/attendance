@@ -101,7 +101,7 @@ function AttendTable() {
                                                 <td className="column5">{Attendee.presence ? "Present" : "Absent"}</td>
                                                 <td className="column5">{Attendee.totalTime} Hrs</td>
                                                 <td className="column6">
-                                                    <p className="p-2">{console.log(Attendee.description)}
+                                                    <p className="p-2">{Attendee.description}
 
                                                     </p>
                                                     {/* <Link className="btn btn-primary" to="/attendance/tasks">Show Details</Link> */}
