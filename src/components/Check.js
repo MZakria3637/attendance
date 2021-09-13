@@ -28,17 +28,15 @@ function Check() {
     const [IsCheckOut, setIsCheckOut] = useState(false);
 
     const handleSubmit = (e) => {
-
-        fetch("https://octalogicx.herokuapp.com/check/task", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            }, body: JSON.stringify({ description: task, userId: userId })
-        }).then((res) => res.json())
-            .then((result) => {
-                // console.log(result);
+        if (task !== "" && task !== null) {
+            fetch("https://octalogicx.herokuapp.com/check/task", {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }, body: JSON.stringify({ description: task, userId: userId })
             })
+        }
         setIsCheckOut(false);
 
     }
