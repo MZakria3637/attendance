@@ -28,7 +28,7 @@ function Check() {
     const [IsCheckOut, setIsCheckOut] = useState(false);
 
     const handleSubmit = (e) => {
-        alert("hello")
+
         fetch("https://octalogicx.herokuapp.com/check/task", {
             method: "POST",
             headers: {
@@ -104,7 +104,7 @@ function Check() {
                                 setTask(e.target.value);
                             }}></textarea>
                         </div>
-                        <button  class="btn btn-primary mt-2" onClick={(e) => { handleSubmit(e); }}>Submit</button>
+                        <button class="btn btn-primary mt-2" onClick={(e) => { handleSubmit(e); }}>Submit</button>
                     </form>
                     }
                 </div>
