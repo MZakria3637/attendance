@@ -16,3 +16,12 @@
     cursor: pointer;
     transition: all 400ms ease-in-out;
   }
+  .error{
+  display: flex;
+  justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color:red;
+    font-size: 4.0rem;
+  }

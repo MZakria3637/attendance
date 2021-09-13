@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "../App.css";
 import "./SignIn.css";
 import { Link, useHistory } from "react-router-dom";
+//import { useEffect } from "react/cjs/react.development";
 function SignIn(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const history = useHistory();
+
     const handleLogin = () => {
         fetch("https://octalogicx.herokuapp.com/users/auth", {
             method: "POST",
@@ -18,11 +20,16 @@ function SignIn(props) {
         })
             .then((res) => res.json())
             .then((result) => {
-                console.log(result);
+                // console.log(result);
                 if (!result.err) {
                     setEmail("");
                     setPassword("");
-                    history.push(`/check/${result.User._id}`);
+                    if (result.message) {
+                        history.push(`/attendance`)
+                    }
+                    else {
+                         history.push(`/check/${result.User._id}`);
+                    }
                 }
                 else {
                     setError("Wrong Credentials !!!");
@@ -42,7 +49,7 @@ function SignIn(props) {
                         autoFocus
                         required
                         className="form-control"
-                      
+
                         id="staticEmail"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -63,7 +70,7 @@ function SignIn(props) {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    {error&&  <p className="primary">{error}</p>}
+                    {error && <p className="primary">{error}</p>}
                 </div>
             </div>
 
@@ -76,8 +83,8 @@ function SignIn(props) {
                 }}
             />
             <Link className="btn btn-secondary mx-2" to="/signup">SignUp</Link>
-            <Link className="btn btn-secondary mx-2" to="/attendance">Admin</Link>
-            
+            {/* <Link className="btn btn-secondary mx-2" to="/attendance">Admin</Link> */}
+
 
         </div>
     );

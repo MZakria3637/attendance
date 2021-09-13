@@ -3,7 +3,19 @@ import "./check.css"
 import { useParams } from 'react-router-dom'
 //import InternTasksList from './InternTasksList';
 // import InternTAsks from './InternTAsks'
+
 function Check() {
+    const [msgError, setMsgError] = useState(false);
+    let { userId } = useParams();
+    useEffect(() => {
+        fetch(`https://octalogicx.herokuapp.com/users/${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.err) {
+                    setMsgError(data.err)
+                }
+            })
+    }, [userId])
     const [chkIn, setChkIn] = useState({
         time: "",
         err: ""
@@ -12,11 +24,21 @@ function Check() {
         time: "",
         err: ""
     });
-    const [description, setDescription] = useState("");
+    const [task, setTask] = useState("");
     const [IsCheckOut, setIsCheckOut] = useState(false);
-    let { userId } = useParams();
+
     const handleSubmit = (e) => {
-        e.preventDefault();
+        alert("hello")
+        fetch("https://octalogicx.herokuapp.com/check/task", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            }, body: JSON.stringify({ description: task, userId: userId })
+        }).then((res) => res.json())
+            .then((result) => {
+                // console.log(result);
+            })
         setIsCheckOut(false);
 
     }
@@ -60,9 +82,12 @@ function Check() {
         }
 
     }, [chkIn])
-    console.log(description);
+    useEffect(() => {
+
+    })
+    // console.log(task);
     return (
-        <>
+        <>{msgError ? (<div className="error">{msgError}</div>) : (
             <div className="row1 m-5">
                 <div className="col1">
                     <p>{chkIn.time ? chkIn.time : chkIn.err}</p>
@@ -71,31 +96,33 @@ function Check() {
                 </div>
                 <div className="col2">
                     <p>{chkOut.time ? chkOut.time : chkOut.err}</p>
-                    <button type="button" className="btn btn-danger btn-lg" onClick={CheckOut}>CHECK OUT</button><br/>
+                    <button type="button" className="btn btn-danger btn-lg" onClick={CheckOut}>CHECK OUT</button><br />
                     {IsCheckOut && <form className=" p-5 " style={{ display: 'inline-block' }}>
                         <div class="form-group ">
                             <label for="exampleFormControlTextarea1">Today's Work </label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="50" onChange={(e) => {
-                                setDescription(e.target.value);
+                                setTask(e.target.value);
                             }}></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2" onSubmit={(e) => { handleSubmit(e); }}>Submit</button>
+                        <button  class="btn btn-primary mt-2" onClick={(e) => { handleSubmit(e); }}>Submit</button>
                     </form>
                     }
                 </div>
 
-            </div>
+            </div>)
+        }
             {/* <InternTAsks /> */}
             {/* {IsCheckOut && <form className=" p-5 " style={{display:'inline-block'}}>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Today's Work </label>
                     <textarea class="form-control"  id="exampleFormControlTextarea1" rows="3"  onChange={(e) => {
-                        setDescription(e.target.value);
+                        setTask(e.target.value);
                     }}></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary mt-2" onSubmit={(e)=>{handleSubmit(e);}}>Submit</button>
             </form>
             } */}
+
         </>
     )
 }

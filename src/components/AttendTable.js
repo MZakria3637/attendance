@@ -3,29 +3,34 @@ import { useHistory} from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import { Link } from "react-router-dom";
 function AttendTable() {
+    
     const [Attendees, setAttendees] = useState([]);
     const [Dat, setDate] = useState("");
     const [id, setID] = useState("");
     const [modal, setModal] = useState(false);
     const history = useHistory();
+    console.log(Dat)
     const toggle = () => {
         setModal(!modal);
     }
     useEffect(() => {
-
+        let date=new Date();
+        console.log(date)
         fetch(
-            "https://octalogicx.herokuapp.com/attendances"
+            `https://octalogicx.herokuapp.com/attendances/byDate/${date}`
         ).then((res) => res.json())
             .then((result) => {
                 setAttendees(result);
+                console.log(result)
             })
     }, []);
 
     useEffect(() => {
         fetch(
-            `https://octalogicx.herokuapp.com/attendances/${Dat}`
+            `https://octalogicx.herokuapp.com/attendances/byDate/${Dat}`
         ).then((res) => res.json())
             .then((result) => {
+                console.log(result);
                 setAttendees(result);
             })
     }, [Dat])
@@ -62,7 +67,7 @@ function AttendTable() {
                 <input type="date" className="p-1 m-2" style={{ borderRadius: 3 }} data-date-format="dd/mm/yyyy" onChange={(e) => { setDate(new Date(e.target.value)) }} />
                 <label className="font-weight-bold">Order By Name</label>
                 <select className="form-select w-25 m-2" aria-label="Default select example" onChange={(e) => { setID(e.target.value) }}>
-                    <option selected >Select Name</option>
+                    <option defaultValue >Select Name</option>
                     <option value="">None</option>
                     {Attendees.map((Attendee, index) => {
                         return (
@@ -96,7 +101,7 @@ function AttendTable() {
                                                 <td className="column5">{Attendee.presence ? "Present" : "Absent"}</td>
                                                 <td className="column5">{Attendee.totalTime} Hrs</td>
                                                 <td className="column6">
-                                                    <p className="p-2">hello i made a website today hrfghjbf  hgdshf grsf rwhne f
+                                                    <p className="p-2">{console.log(Attendee.description)}
 
                                                     </p>
                                                     {/* <Link className="btn btn-primary" to="/attendance/tasks">Show Details</Link> */}
