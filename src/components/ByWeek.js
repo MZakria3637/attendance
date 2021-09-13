@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 function ByMonth() {
     let { id } = useParams();
-    // console.log(id);
+    console.log(id);
     const [Attendees, setAttendees] = useState([]);
     useEffect(() => {
 
