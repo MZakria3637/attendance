@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "./check.css"
 import { useParams } from 'react-router-dom'
+import Logout from './Logout';
 //import InternTasksList from './InternTasksList';
 // import InternTAsks from './InternTAsks'
 
@@ -86,28 +87,31 @@ function Check() {
     // console.log(task);
     return (
         <>{msgError ? (<div className="error">{msgError}</div>) : (
-            <div className="row1 m-5">
-                <div className="col1">
-                    <p>{chkIn.time ? chkIn.time : chkIn.err}</p>
-                    <button type="button" className={`btn btn-success btn-lg ${chkIn}`} onClick={CheckIn}>CHECK IN</button>
+            <div>
+                <Logout />
+                <div className="row1 m-5">
 
-                </div>
-                <div className="col2">
-                    <p>{chkOut.time ? chkOut.time : chkOut.err}</p>
-                    <button type="button" className="btn btn-danger btn-lg" onClick={CheckOut}>CHECK OUT</button><br />
-                    {IsCheckOut && <form className=" p-5 " style={{ display: 'inline-block' }}>
-                        <div class="form-group ">
-                            <label for="exampleFormControlTextarea1">Today's Work </label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="50" onChange={(e) => {
-                                setTask(e.target.value);
-                            }}></textarea>
-                        </div>
-                        <button class="btn btn-primary mt-2" onClick={(e) => { handleSubmit(e); }}>Submit</button>
-                    </form>
-                    }
-                </div>
+                    <div className="col1">
+                        <p>{chkIn.time ? chkIn.time : chkIn.err}</p>
+                        <button type="button" className={`btn btn-success btn-lg ${chkIn}`} onClick={CheckIn}>CHECK IN</button>
 
-            </div>)
+                    </div>
+                    <div className="col2">
+                        <p>{chkOut.time ? chkOut.time : chkOut.err}</p>
+                        <button type="button" className="btn btn-danger btn-lg" onClick={CheckOut}>CHECK OUT</button><br />
+                        {IsCheckOut && <form className=" p-5 " style={{ display: 'inline-block' }}>
+                            <div class="form-group ">
+                                <label for="exampleFormControlTextarea1">Today's Work </label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="50" onChange={(e) => {
+                                    setTask(e.target.value);
+                                }}></textarea>
+                            </div>
+                            <button class="btn btn-primary mt-2" onClick={(e) => { handleSubmit(e); }}>Submit</button>
+                        </form>
+                        }
+                    </div>
+
+                </div></div>)
         }
             {/* <InternTAsks /> */}
             {/* {IsCheckOut && <form className=" p-5 " style={{display:'inline-block'}}>

@@ -36,8 +36,7 @@ function SignUp(props) {
             type="text"
             autoFocus
             required
-            class="form-control
-                      "
+            class="form-control"
             id="staticName"
             value={name}
             onChange={(e) => setName(e.target.value)}
